@@ -1,6 +1,6 @@
 # nftables-stuff
 
-```nftables
+```nft
 #!/usr/bin/nft -f
 
 flush ruleset
@@ -20,27 +20,27 @@ table inet firewallrules {
 	# inet - ingress - filter
 	# Requires device name in hook
 	chain inet_filter_ingress_dev_lo {
-		type filter hook ingress device lo priority 0; policy drop;
+		type filter hook ingress device lo priority filter; policy drop;
 	}
 
 	# inet - prerouting - filter
 	chain inet_filter_prerouting {
-		type filter hook prerouting priority 0; policy drop;
+		type filter hook prerouting priority filter; policy drop;
 	}
 
 	# inet - forward - filter
 	chain inet_filter_forward {
-		type filter hook forward priority 0; policy drop;
+		type filter hook forward priority filter; policy drop;
 	}
 
 	# inet - input - filter
 	chain inet_filter_input {
-		type filter hook input priority 0; policy drop;
+		type filter hook input priority filter; policy drop;
 	}
 
 	# inet - output - filter
 	chain inet_filter_output {
-		type filter hook output priority 0; policy drop;
+		type filter hook output priority filter; policy drop;
 	}
 
 	# inet - postrouting - filter
@@ -50,7 +50,7 @@ table inet firewallrules {
 
 	# inet - prerouting - nat
 	chain inet_nat_prerouting {
-		type nat hook prerouting priority 0; policy drop;
+		type nat hook prerouting priority dstnat; policy drop;
 	}
 
 	# inet - input - nat
@@ -65,7 +65,7 @@ table inet firewallrules {
 
 	# inet - postrouting - nat
 	chain inet_nat_postrouting {
-		type nat hook postrouting priority 0; policy drop;
+		type nat hook postrouting priority srcnat; policy drop;
 	}
 
 	# inet - output - route
@@ -80,32 +80,32 @@ table ip6 firewallrulesipv6 {
 
 	# ip6 - prerouting - filter
 	chain ip6_filter_prerouting {
-		type filter hook prerouting priority 0; policy drop;
+		type filter hook prerouting priorityfilter0; policy drop;
 	}
 
 	# ip6 - forward - filter
 	chain ip6_filter_forward {
-		type filter hook forward priority 0; policy drop;
+		type filter hook forward priority filter; policy drop;
 	}
 
 	# ip6 - input - filter
 	chain ip6_filter_input {
-		type filter hook input priority 0; policy drop;
+		type filter hook input priority filter; policy drop;
 	}
 
 	# ip6 - output - filter
 	chain ip6_filter_output {
-		type filter hook output priority 0; policy drop;
+		type filter hook output priority filter; policy drop;
 	}
 
 	# ip6 - postrouting - filter
 	chain ip6_filter_postrouting {
-		type filter hook postrouting priority 0; policy drop;
+		type filter hook postrouting priority filter; policy drop;
 	}
 
 	# ip6 - prerouting - nat
 	chain ip6_nat_prerouting {
-		type nat hook prerouting priority 0; policy drop;
+		type nat hook prerouting priority dstnat; policy drop;
 	}
 
 	# ip6 - input - nat
@@ -120,7 +120,7 @@ table ip6 firewallrulesipv6 {
 
 	# ip6 - postrouting - nat
 	chain ip6_nat_postrouting {
-		type nat hook postrouting priority 0; policy drop;
+		type nat hook postrouting priority srcnat; policy drop;
 	}
 
 	# ip6 - output - route
@@ -135,34 +135,34 @@ table ip firewallrulesipv4 {
 
 	# ip - prerouting - filter
 	chain ip_filter_prerouting {
-		type filter hook prerouting priority 0; policy drop;
+		type filter hook prerouting priority filter; policy drop;
 	}
 
 	# ip - forward - filter
 	chain ip_filter_forward {
-		type filter hook forward priority 0; policy drop;
+		type filter hook forward priority filter; policy drop;
 	}
 
 	# ip - input - filter
 	chain ip_filter_input {
-		type filter hook input priority 0; policy drop;
+		type filter hook input priority filter; policy drop;
 	}
 
 	# ip - output - filter
 	chain ip_filter_output {
-		type filter hook output priority 0; policy drop;
+		type filter hook output priority filter; policy drop;
 	}
 
 	# ip - postrouting - filter
 	chain ip_filter_postrouting {
-		type filter hook postrouting priority 0; policy drop;
+		type filter hook postrouting priority filter; policy drop;
 	}
 
 	# NAT:
 
 	# ip - prerouting - nat
 	chain ip_nat_prerouting {
-		type nat hook prerouting priority 0; policy drop;
+		type nat hook prerouting priority dstnat; policy drop;
 	}
 
 	# ip - input - nat
@@ -177,7 +177,7 @@ table ip firewallrulesipv4 {
 
 	# ip - postrouting - nat
 	chain ip_nat_postrouting {
-		type nat hook postrouting priority 0; policy drop;
+		type nat hook postrouting priority srcnat; policy drop;
 	}
 
 	# ROUTING:
@@ -194,12 +194,12 @@ table arp arprules {
 
 	# arp - input - filter
 	chain arp_filter_input {
-		type filter hook input priority 0; policy drop;
+		type filter hook input priority filter; policy drop;
 	}
 
 	# arp - output - filter
 	chain arp_filter_output {
-		type filter hook output priority 0; policy drop;
+		type filter hook output priority filter; policy drop;
 	}
 
 }
@@ -208,27 +208,27 @@ table arp arprules {
 table bridge bridging {
 	# bridge - prerouting - filter
 	chain bridge_filter_prerouting {
-		type filter hook prerouting priority 0; policy drop;
+		type filter hook prerouting priority filter; policy drop;
 	}
 
 	# bridge - forward - filter
 	chain bridge_filter_forward {
-		type filter hook forward priority 0; policy drop;
+		type filter hook forward priority filter; policy drop;
 	}
 
 	# bridge - input - filter
 	chain bridge_filter_input {
-		type filter hook input priority 0; policy drop;
+		type filter hook input priority filter; policy drop;
 	}
 
 	# bridge - output - filter
 	chain bridge_filter_output {
-		type filter hook output priority 0; policy drop;
+		type filter hook output priority filter; policy drop;
 	}
 
 	# bridge - postrouting - filter
 	chain bridge_filter_postrouting {
-		type filter hook postrouting priority 0; policy drop;
+		type filter hook postrouting priority filter; policy drop;
 	}
 
 }
